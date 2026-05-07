@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <math.h>
+#include <cuda_runtime.h>
 #include "vector.h"
 #include "config.h"
 #include "planets.h"
@@ -10,7 +11,45 @@
 // represents the objects in the system.  Global variables
 vector3 *hVel, *d_hVel;
 vector3 *hPos, *d_hPos;
-double *mass;
+double *mass, *d_mass;
+
+//initDeviceMemory: Allocate GPU memory for the simulation data
+//Parameters: numObjects: number of objects to allocate
+//Returns: None
+//Side Effects: Allocates memory on GPU and copies host data to device
+void initDeviceMemory(int numObjects)
+{
+	cudaMalloc(&d_hVel, sizeof(vector3) * numObjects);
+	cudaMalloc(&d_hPos, sizeof(vector3) * numObjects);
+	cudaMalloc(&d_mass, sizeof(double) * numObjects);
+	
+	// Copy host data to device
+	cudaMemcpy(d_hVel, hVel, sizeof(vector3) * numObjects, cudaMemcpyHostToDevice);
+	cudaMemcpy(d_hPos, hPos, sizeof(vector3) * numObjects, cudaMemcpyHostToDevice);
+	cudaMemcpy(d_mass, mass, sizeof(double) * numObjects, cudaMemcpyHostToDevice);
+}
+
+//freeDeviceMemory: Free GPU memory allocated by a previous call to initDeviceMemory
+//Parameters: None
+//Returns: None
+//Side Effects: Frees the GPU memory
+void freeDeviceMemory()
+{
+	cudaFree(d_hVel);
+	cudaFree(d_hPos);
+	cudaFree(d_mass);
+}
+
+//copyDeviceToHost: Copy data from device back to host
+//Parameters: numObjects: number of objects to copy
+//Returns: None
+//Side Effects: Copies GPU data back to host memory
+void copyDeviceToHost(int numObjects)
+{
+	cudaMemcpy(hVel, d_hVel, sizeof(vector3) * numObjects, cudaMemcpyDeviceToHost);
+	cudaMemcpy(hPos, d_hPos, sizeof(vector3) * numObjects, cudaMemcpyDeviceToHost);
+}
+
 
 //initHostMemory: Create storage for numObjects entities in our system
 //Parameters: numObjects: number of objects to allocate
@@ -98,6 +137,7 @@ int main(int argc, char **argv)
 	initHostMemory(NUMENTITIES);
 	planetFill();
 	randomFill(NUMPLANETS + 1, NUMASTEROIDS);
+	initDeviceMemory(NUMENTITIES);
 	//now we have a system.
 	#ifdef DEBUG
 	printSystem(stdout);
@@ -105,11 +145,13 @@ int main(int argc, char **argv)
 	for (t_now=0;t_now<DURATION;t_now+=INTERVAL){
 		compute();
 	}
+	copyDeviceToHost(NUMENTITIES);
 	clock_t t1=clock()-t0;
 #ifdef DEBUG
 	printSystem(stdout);
 #endif
 	printf("This took a total time of %f seconds\n",(double)t1/CLOCKS_PER_SEC);
 
+	freeDeviceMemory();
 	freeHostMemory();
 }
