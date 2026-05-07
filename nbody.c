@@ -104,8 +104,8 @@ void randomFill(int start, int count)
 		{
 			hVel[i][j] = (double)rand() / RAND_MAX * MAX_DISTANCE * 2 - MAX_DISTANCE;
 			hPos[i][j] = (double)rand() / RAND_MAX * MAX_VELOCITY * 2 - MAX_VELOCITY;
-			mass[i] = (double)rand() / RAND_MAX * MAX_MASS;
 		}
+		mass[i] = (double)rand() / RAND_MAX * MAX_MASS;
 	}
 }
 
@@ -120,7 +120,7 @@ void printSystem(FILE* handle){
 		for (j=0;j<3;j++){
 			fprintf(handle,"%lf,",hPos[i][j]);
 		}
-		printf("),v=(");
+		fprintf(handle,"),v=(");
 		for (j=0;j<3;j++){
 			fprintf(handle,"%lf,",hVel[i][j]);
 		}
