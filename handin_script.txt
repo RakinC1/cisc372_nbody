@@ -2067,4 +2067,80 @@ fatal: unable to access 'https://github.com/RakinC1/cisc372_nbody.git/': The req
 bash: CD: command not found...
 Similar command is: 'cd'
 ]0;rakinchy@login01.darwin:~/cisc372_nbody[(ea-cisc372-silber:rakinchy)@login01.darwin cisc372_nbody]$ cd
-]0;rakinchy@login01.darwin:~[(ea-cisc372-silber:
+]0;rakinchy@login01.darwin:~[(ea-cisc372-silber:rakinchy)@login01.darwin ~]$ cat ~/.ssh/id_ed25519.pub
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAQl7H3udf3T2Hr2jmi4hhH3KnG3vtCC93SrGx/W0Cfa uappstech@hotmail.com
+]0;rakinchy@login01.darwin:~[(ea-cisc372-silber:rakinchy)@login01.darwin ~]$ cat ~/.ssh/id_ed25519.pubd[KCDgit push origin mastercommit -m "cuda implementation"add . [Kssh-keygen -t ed25519 -C "uappstech@hotmail.com"
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/home/4408/.ssh/id_ed25519): 
+/home/4408/.ssh/id_ed25519 already exists.
+Overwrite (y/n)? y
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/4408/.ssh/id_ed25519.
+Your public key has been saved in /home/4408/.ssh/id_ed25519.pub.
+The key fingerprint is:
+SHA256:0LSZs/3XtQgeIw1lhL5ytJ1IiwunNAGaoexpC0SLOnI uappstech@hotmail.com
+The key's randomart image is:
++--[ED25519 256]--+
+|        . o+     |
+| o .   o =o      |
+|= = . . B.       |
+|o*   . . Bo      |
+|+ .   . S.B=.   .|
+|=+E  + + *o++ ..o|
+|+o. . = +  ......|
+| .   . .     .   |
+|                 |
++----[SHA256]-----+
+]0;rakinchy@login01.darwin:~[(ea-cisc372-silber:rakinchy)@login01.darwin ~]$ cat ~/.ssh/id_ed25519.pub
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOEZt42Kkp2iDPFr30g4rTpIwhtYf7qfQVcSRu+bMhMp uappstech@hotmail.com
+]0;rakinchy@login01.darwin:~[(ea-cisc372-silber:rakinchy)@login01.darwin ~]$ cd cisc372_nbody/
+]0;rakinchy@login01.darwin:~/cisc372_nbody[(ea-cisc372-silber:rakinchy)@login01.darwin cisc372_nbody]$ git remote set-url origin git@github.com:RakinC1/CISC372_pi cProject.git
+]0;rakinchy@login01.darwin:~/cisc372_nbody[(ea-cisc372-silber:rakinchy)@login01.darwin cisc372_nbody]$ ssh -T git@github.com
+Warning: Permanently added the ECDSA host key for IP address '140.82.114.3' to the list of known hosts.
+Hi RakinC1! You've successfully authenticated, but GitHub does not provide shell access.
+]0;rakinchy@login01.darwin:~/cisc372_nbody[(ea-cisc372-silber:rakinchy)@login01.darwin cisc372_nbody]$ git push origin main
+To git@github.com:RakinC1/CISC372_picProject.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'git@github.com:RakinC1/CISC372_picProject.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first merge the remote changes (e.g.,
+hint: 'git pull') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+]0;rakinchy@login01.darwin:~/cisc372_nbody[(ea-cisc372-silber:rakinchy)@login01.darwin cisc372_nbody]$ gir [K[Kt add .
+]0;rakinchy@login01.darwin:~/cisc372_nbody[(ea-cisc372-silber:rakinchy)@login01.darwin cisc372_nbody]$ git m[Ko[Kcommit -m ""c"i"[1P"u"d"a"
+[main e67c6a3] cuda
+ 1 file changed, 60 insertions(+), 1 deletion(-)
+]0;rakinchy@login01.darwin:~/cisc372_nbody[(ea-cisc372-silber:rakinchy)@login01.darwin cisc372_nbody]$ git pusg[Kh origin main
+To git@github.com:RakinC1/CISC372_picProject.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'git@github.com:RakinC1/CISC372_picProject.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first merge the remote changes (e.g.,
+hint: 'git pull') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+]0;rakinchy@login01.darwin:~/cisc372_nbody[(ea-cisc372-silber:rakinchy)@login01.darwin cisc372_nbody]$ git reser[Kt
+]0;rakinchy@login01.darwin:~/cisc372_nbody[(ea-cisc372-silber:rakinchy)@login01.darwin cisc372_nbody]$ git resetpush origin maincommit -m "cuda"add .[K
+]0;rakinchy@login01.darwin:~/cisc372_nbody[(ea-cisc372-silber:rakinchy)@login01.darwin cisc372_nbody]$ git add .resetpush origin maincommit -m "cuda"
+# On branch main
+# Your branch is ahead of 'origin/main' by 2 commits.
+#   (use "git push" to publish your local commits)
+#
+nothing to commit, working directory clean
+]0;rakinchy@login01.darwin:~/cisc372_nbody[(ea-cisc372-silber:rakinchy)@login01.darwin cisc372_nbody]$ git commit -m "cuda"add .[Kresetpush origin main
+Warning: Permanently added the ECDSA host key for IP address '140.82.112.4' to the list of known hosts.
+To git@github.com:RakinC1/CISC372_picProject.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'git@github.com:RakinC1/CISC372_picProject.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first merge the remote changes (e.g.,
+hint: 'git pull') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+]0;rakinchy@login01.darwin:~/cisc372_nbody[(ea-cisc372-silber:rakinchy)@login01.darwin cisc372_nbody]$ git push origin main -f
+Counting objects: 56, done.
+Delta compression using up to 128 threads.
+Compressing objects:   1% (1/54)   Compressing objects:   3% (2/54)   Compressing objects:   5% (3/54)   Compressing objects:   7% (4/54)   Compressing objects:   9% (5/54)   Compressing objects:  11% (6/54)   Compressing objects:  12% (7/54)   Compressing objects:  14% (8/54)   Compressing objects:  16% (9/54)   Compressing objects:  18% (10/54)   Compressing objects:  20% (11/54)   Compressing objects:  22% (12/54)   Compressing objects:  24% (13/54)   Compressing objects:  25% (14/54)   Compressing objects:  27% (15/54)   Compressing objects:  29% (16/54)   Compressing objects:  31% (17/54)   Compressing objects:  33% (18/54)   Compressing objects:  35% (19/54)   Compressing objects:  37% (20/54)   Compressing objects:  38% (21/54)   Compressing objects:  40% (22/54)   Compressing objects:  42% (23/54)   Compressing objects:  44% (24/54)   Compressing objects:  46% (25/54)   Compressing objects:  48% (26/54)   Compressing objects:  50% (27/54)   Compressing objects:  51% (28/54)   Compressing objects:  53% (29/54)   Compressing objects:  55% (30/54)   Compressing objects:  57% (31/54)   Compressing objects:  59% (32/54)   Compressing objects:  61% (33/54)   Compressing objects:  62% (34/54)   Compressing objects:  64% (35/54)   Compressing objects:  66% (36/54)   Compressing objects:  68% (37/54)   Compressing objects:  70% (38/54)   Compressing objects:  72% (39/54)   Compressing objects:  74% (40/54)   Compressing objects:  75% (41/54)   Compressing objects:  77% (42/54)   Compressing objects:  79% (43/54)   Compressing objects:  81% (44/54)   Compressing objects:  83% (45/54)   Compressing objects:  85% (46/54)   Compressing objects:  87% (47/54)   Compressing objects:  88% (48/54)   Compressing objects:  90% (49/54)   Compressing objects:  92% (50/54)   Compressing objects:  94% (51/54)   Compressing objects:  96% (52/54)   Compressing objects:  98% (53/54)   Compressing objects: 100% (54/54)   Compressing objects: 100% (54/54), done.
+Writing objects:   1% (1/56)   Writing objects:   3% (2/56)   Writing objects:   5% (3/56)   Writing objects:   7% (4/56)   Writing objects:   8% (5/56)   Writing objects:  10% (6/56)   Writing objects:  12% (7/56)   Writing objects:  14% (8/56)   Writing objects:  16% (9/56)   Writing objects:  17% (10/56)   Writing objects:  19% (11/56)   Writing objects:  21% (12/56)   Writing objects:  23% (13/56)   Writing objects:  25% (14/56)   Writing objects:  26% (15/56)   Writing objects:  28% (16/56)   Writing objects:  30% (17/56)   Writing objects:  32% (18/56)   Writing objects:  33% (19/56)   Writing objects:  35% (20/56)   Writing objects:  37% (21/56)   Writing objects:  39% (22/56)   Writing objects:  41% (23/56)   Writing objects:  42% (
