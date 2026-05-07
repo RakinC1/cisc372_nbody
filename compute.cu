@@ -58,7 +58,7 @@ __global__ void updatePositionsVelocities(vector3 *d_hVel, vector3 *d_hPos, vect
 }
 
 // Main compute function called from nbody.c
-void compute() {
+extern "C" void compute() {
 	int n = NUMENTITIES;
 	
 	// Configure grid and block dimensions
@@ -73,11 +73,11 @@ void compute() {
 	
 	// Allocate temporary device memory for acceleration matrix
 	vector3 *d_accels_temp;
-	cudaMalloc(&d_accels_temp, sizeof(vector3) * n * n);
+	cudaMalloc((void**)&d_accels_temp, sizeof(vector3) * n * n);
 	
 	// Allocate temporary device memory for acceleration sums
 	vector3 *d_accel_sum;
-	cudaMalloc(&d_accel_sum, sizeof(vector3) * n);
+	cudaMalloc((void**)&d_accel_sum, sizeof(vector3) * n);
 	
 	// Kernel 1: Compute pairwise accelerations
 	computeAccelerations<<<blocks1, threads1>>>(d_hPos, d_mass, d_accels_temp, n);

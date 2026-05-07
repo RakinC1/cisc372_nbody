@@ -19,9 +19,9 @@ double *mass, *d_mass;
 //Side Effects: Allocates memory on GPU and copies host data to device
 void initDeviceMemory(int numObjects)
 {
-	cudaMalloc(&d_hVel, sizeof(vector3) * numObjects);
-	cudaMalloc(&d_hPos, sizeof(vector3) * numObjects);
-	cudaMalloc(&d_mass, sizeof(double) * numObjects);
+	cudaMalloc((void**)&d_hVel, sizeof(vector3) * numObjects);
+	cudaMalloc((void**)&d_hPos, sizeof(vector3) * numObjects);
+	cudaMalloc((void**)&d_mass, sizeof(double) * numObjects);
 	
 	// Copy host data to device
 	cudaMemcpy(d_hVel, hVel, sizeof(vector3) * numObjects, cudaMemcpyHostToDevice);
