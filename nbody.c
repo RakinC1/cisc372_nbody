@@ -138,6 +138,7 @@ int main(int argc, char **argv)
 	planetFill();
 	randomFill(NUMPLANETS + 1, NUMASTEROIDS);
 	initDeviceMemory(NUMENTITIES);
+	initComputeBuffers(NUMENTITIES);
 	//now we have a system.
 	#ifdef DEBUG
 	printSystem(stdout);
@@ -145,6 +146,7 @@ int main(int argc, char **argv)
 	for (t_now=0;t_now<DURATION;t_now+=INTERVAL){
 		compute();
 	}
+	freeComputeBuffers();
 	copyDeviceToHost(NUMENTITIES);
 	clock_t t1=clock()-t0;
 #ifdef DEBUG

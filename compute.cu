@@ -4,6 +4,11 @@
 #include "vector.h"
 #include "config.h"
 
+// Global device buffers (persistent across compute calls)
+static vector3 *d_accels_temp = NULL;
+static vector3 *d_accel_sum = NULL;
+static int allocated_size = 0;
+
 // Kernel 1: Compute pairwise accelerations
 // Each thread computes accels[i*n + j] - the acceleration on object i due to object j
 __global__ void computeAccelerations(vector3 *d_hPos, double *d_mass, vector3 *d_accels, int n) {
@@ -58,6 +63,26 @@ __global__ void updatePositionsVelocities(vector3 *d_hVel, vector3 *d_hPos, vect
 	}
 }
 
+// Initialize persistent compute buffers (call once before simulation loop)
+extern "C" void initComputeBuffers(int n) {
+	if (d_accels_temp == NULL) {
+		cudaMalloc((void**)&d_accels_temp, sizeof(vector3) * n * n);
+		cudaMalloc((void**)&d_accel_sum, sizeof(vector3) * n);
+		allocated_size = n;
+	}
+}
+
+// Free persistent compute buffers (call once after simulation loop)
+extern "C" void freeComputeBuffers() {
+	if (d_accels_temp != NULL) {
+		cudaFree(d_accels_temp);
+		cudaFree(d_accel_sum);
+		d_accels_temp = NULL;
+		d_accel_sum = NULL;
+		allocated_size = 0;
+	}
+}
+
 // Main compute function called from nbody.c
 extern "C" void compute() {
 	int n = NUMENTITIES;
@@ -72,14 +97,6 @@ extern "C" void compute() {
 	// For kernels 2 and 3: 1D grid for n objects
 	int blocks_1d = (n + blockSize - 1) / blockSize;
 	
-	// Allocate temporary device memory for acceleration matrix
-	vector3 *d_accels_temp;
-	cudaMalloc((void**)&d_accels_temp, sizeof(vector3) * n * n);
-	
-	// Allocate temporary device memory for acceleration sums
-	vector3 *d_accel_sum;
-	cudaMalloc((void**)&d_accel_sum, sizeof(vector3) * n);
-	
 	// Kernel 1: Compute pairwise accelerations
 	computeAccelerations<<<blocks1, threads1>>>(d_hPos, d_mass, d_accels_temp, n);
 	cudaDeviceSynchronize();
@@ -91,9 +108,5 @@ extern "C" void compute() {
 	// Kernel 3: Update positions and velocities
 	updatePositionsVelocities<<<blocks_1d, blockSize>>>(d_hVel, d_hPos, d_accel_sum, n);
 	cudaDeviceSynchronize();
-	
-	// Free temporary device memory
-	cudaFree(d_accels_temp);
-	cudaFree(d_accel_sum);
 }
 
